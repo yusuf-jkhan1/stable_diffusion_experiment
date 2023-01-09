@@ -1,7 +1,8 @@
 #Misc
-dev.ipynb
-
-
+misc.ipynb
+weights/
+local_selfies/
+precomp_xformers/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

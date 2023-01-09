@@ -118,7 +118,6 @@ jupyterlab-git==0.37.1
 jupyterlab-pygments==0.2.2
 jupyterlab-server==2.15.0
 jupyterlab-widgets==1.1.1
-jupyternotify==0.1.15
 keras==2.9.0
 Keras-Preprocessing==1.1.2
 kiwisolver==1.4.3
@@ -253,7 +252,7 @@ torchvision==0.13.0+cu116
 tornado==6.2
 tqdm==4.64.0
 traitlets==5.3.0
-transformers==4.20.1
+transformers==4.25.1
 triton==2.0.0.dev20221202
 typer==0.4.2
 typing_extensions==4.3.0
@@ -269,6 +268,7 @@ websockets==10.4
 Werkzeug==2.1.2
 widgetsnbextension==3.6.1
 wrapt==1.14.1
+xformers @ git+https://github.com/facebookresearch/xformers.git@47ab8b812fbc0518eb6b630440548c1ff7915500
 xgboost==1.6.1
 xlrd==1.1.0
 xxhash==3.0.0
