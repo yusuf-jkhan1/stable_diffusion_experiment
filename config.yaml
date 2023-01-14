@@ -1,0 +1,7 @@
+CONCEPT_CONFIG:
+    INSTANCE_NAME:'yusufjkhan1'
+    CLASS_NAME:'man'
+TRAINING_CONFIG:    
+    MODEL_NAME:"runwayml/stable-diffusion-v1-5"
+    OUTPUT_DIR:"./weights/"
+    

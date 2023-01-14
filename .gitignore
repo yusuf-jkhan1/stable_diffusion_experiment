@@ -1,4 +1,5 @@
 #Misc
+/.huggingface/token
 misc.ipynb
 weights/
 local_selfies/
