@@ -24,6 +24,7 @@ from PIL import Image
 from torchvision import transforms
 from tqdm.auto import tqdm
 from transformers import CLIPTextModel, CLIPTokenizer
+import utils
 
 
 torch.backends.cudnn.benchmark = True
@@ -31,13 +32,19 @@ torch.backends.cudnn.benchmark = True
 
 logger = get_logger(__name__)
 
+TRAINING_CONFIG = "src/configs/training_config.yaml"
+
+cfg = utils._get_config(TRAINING_CONFIG)
+
+
 
 def parse_args(input_args=None):
     parser = argparse.ArgumentParser(description="Simple example of a training script.")
+
     parser.add_argument(
         "--pretrained_model_name_or_path",
         type=str,
-        default=None,
+        default="runwayml/stable-diffusion-v1-5",
         required=True,
         help="Path to pretrained model or model identifier from huggingface.co/models.",
     )
@@ -252,6 +259,7 @@ def parse_args(input_args=None):
         default=None,
         help="Path to json containing multiple concepts, will overwrite parameters like instance_prompt, class_prompt, etc.",
     )
+    
 
     if input_args is not None:
         args = parser.parse_args(input_args)
