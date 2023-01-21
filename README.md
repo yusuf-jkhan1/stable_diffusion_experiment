@@ -6,6 +6,8 @@ tags:
 ---
 # Stable Diff-usuf
 
+Fine-Tuning Stable Diffusion 1.5 and running inference from HuggingFace Endpoint
+
 Sample pictures of this concept:
 ![0](assets/samurai1.png)
 ![1](assets/marble1.png)
@@ -17,4 +19,8 @@ Sample pictures of this concept:
 ![7](assets/dragonball2.png)
 ![8](assets/anime1.png)
 
+
+TODO:
+[ ] Continue refactor, get main logic out of notebook
+[ ] Use Ray Serve to serve with GPU from JarvisAI Labs environment
       
