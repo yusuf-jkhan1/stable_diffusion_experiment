@@ -1,4 +1,4 @@
-echo 'Beginning Primary Installs'
+echo '=== Beginning Setup ==='
 pip install -qq git+https://github.com/ShivamShrirao/diffusers
 pip install -q -U --pre triton
 pip install -q accelerate==0.15.0 transformers==4.25.1 ftfy bitsandbytes==0.35.0 gradio natsort ninja
@@ -16,3 +16,7 @@ else
     echo 'No .env file found'
 fi
 
+sudo apt-get update
+sudo apt-get -y install git-lfs
+
+echo '=== Completed Setup ==='

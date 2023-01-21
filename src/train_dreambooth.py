@@ -44,20 +44,20 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--pretrained_model_name_or_path",
         type=str,
-        default="runwayml/stable-diffusion-v1-5",
-        required=True,
+        default=cfg['pretrained_model_name_or_path'],
+        required=False,
         help="Path to pretrained model or model identifier from huggingface.co/models.",
     )
     parser.add_argument(
         "--pretrained_vae_name_or_path",
         type=str,
-        default=None,
+        default=cfg['pretrained_vae_name_or_path'],
         help="Path to pretrained vae or vae identifier from huggingface.co/models.",
     )
     parser.add_argument(
         "--revision",
         type=str,
-        default=None,
+        default=cfg['revision'],
         required=False,
         help="Revision of pretrained model identifier from huggingface.co/models.",
     )
@@ -129,11 +129,16 @@ def parse_args(input_args=None):
     )
     parser.add_argument(
         "--with_prior_preservation",
-        default=False,
+        default=cfg['with_prior_preservation'],
         action="store_true",
         help="Flag to add prior preservation loss.",
     )
-    parser.add_argument("--prior_loss_weight", type=float, default=1.0, help="The weight of prior preservation loss.")
+    parser.add_argument(
+        "--prior_loss_weight", 
+        type=float, 
+        default=cfg['prior_loss_weight'], 
+        help="The weight of prior preservation loss.")
+    
     parser.add_argument(
         "--num_class_images",
         type=int,
@@ -146,14 +151,19 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="text-inversion-model",
+        default=cfg['output_dir'],
         help="The output directory where the model predictions and checkpoints will be written.",
     )
-    parser.add_argument("--seed", type=int, default=None, help="A seed for reproducible training.")
+    parser.add_argument(
+        "--seed", 
+        type=int, 
+        default=cfg['seed'], 
+        help="A seed for reproducible training.")
+    
     parser.add_argument(
         "--resolution",
         type=int,
-        default=512,
+        default=cfg['resolution'],
         help=(
             "The resolution for input images, all the images in the train/validation dataset will be resized to this"
             " resolution"
@@ -162,26 +172,40 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--center_crop", action="store_true", help="Whether to center crop images before resizing to resolution"
     )
+    
     parser.add_argument("--train_text_encoder", action="store_true", help="Whether to train the text encoder")
+    
     parser.add_argument(
-        "--train_batch_size", type=int, default=4, help="Batch size (per device) for the training dataloader."
+        "--train_batch_size", 
+        type=int, 
+        default=cfg['train_batch_size'], 
+        help="Batch size (per device) for the training dataloader."
+    )
+    
+    parser.add_argument(
+        "--sample_batch_size", 
+        type=int, 
+        default=cfg['sample_batch_size'], 
+        help="Batch size (per device) for sampling images."
     )
     parser.add_argument(
-        "--sample_batch_size", type=int, default=4, help="Batch size (per device) for sampling images."
-    )
-    parser.add_argument("--num_train_epochs", type=int, default=1)
+        "--num_train_epochs", 
+        type=int, 
+        default=1)
+    
     parser.add_argument(
         "--max_train_steps",
         type=int,
-        default=None,
+        default=cfg['max_train_steps'],
         help="Total number of training steps to perform.  If provided, overrides num_train_epochs.",
     )
     parser.add_argument(
         "--gradient_accumulation_steps",
         type=int,
-        default=1,
+        default=cfg['gradient_accumulation_steps'],
         help="Number of updates steps to accumulate before performing a backward/update pass.",
     )
+    
     parser.add_argument(
         "--gradient_checkpointing",
         action="store_true",
@@ -190,7 +214,7 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--learning_rate",
         type=float,
-        default=5e-6,
+        default=cfg['learning_rate'],
         help="Initial learning rate (after the potential warmup period) to use.",
     )
     parser.add_argument(
@@ -202,17 +226,23 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--lr_scheduler",
         type=str,
-        default="constant",
+        default=cfg['lr_scheduler'],
         help=(
             'The scheduler type to use. Choose between ["linear", "cosine", "cosine_with_restarts", "polynomial",'
             ' "constant", "constant_with_warmup"]'
         ),
     )
     parser.add_argument(
-        "--lr_warmup_steps", type=int, default=500, help="Number of steps for the warmup in the lr scheduler."
+        "--lr_warmup_steps", 
+        type=int, 
+        default=cfg['lr_warmup_steps'], 
+        help="Number of steps for the warmup in the lr scheduler."
     )
     parser.add_argument(
-        "--use_8bit_adam", action="store_true", help="Whether or not to use 8-bit Adam from bitsandbytes."
+        "--use_8bit_adam", 
+        default=cfg['use_8bit_adam'],
+        action="store_true", 
+        help="Whether or not to use 8-bit Adam from bitsandbytes."
     )
     parser.add_argument("--adam_beta1", type=float, default=0.9, help="The beta1 parameter for the Adam optimizer.")
     parser.add_argument("--adam_beta2", type=float, default=0.999, help="The beta2 parameter for the Adam optimizer.")
@@ -237,12 +267,16 @@ def parse_args(input_args=None):
         ),
     )
     parser.add_argument("--log_interval", type=int, default=10, help="Log every N steps.")
-    parser.add_argument("--save_interval", type=int, default=10_000, help="Save weights every N steps.")
+    parser.add_argument(
+        "--save_interval", 
+        type=int, 
+        default=cfg['save_interval'], 
+        help="Save weights every N steps.")
     parser.add_argument("--save_min_steps", type=int, default=0, help="Start saving weights after N steps.")
     parser.add_argument(
         "--mixed_precision",
         type=str,
-        default=None,
+        default=cfg['mixed_precision'],
         choices=["no", "fp16", "bf16"],
         help=(
             "Whether to use mixed precision. Choose between fp16 and bf16 (bfloat16). Bf16 requires PyTorch >="
@@ -251,12 +285,15 @@ def parse_args(input_args=None):
         ),
     )
     parser.add_argument("--not_cache_latents", action="store_true", help="Do not precompute and cache latents from VAE.")
-    parser.add_argument("--hflip", action="store_true", help="Apply horizontal flip data augmentation.")
+    parser.add_argument("--hflip",
+                        default=cfg['hflip'],
+                        action="store_true", 
+                        help="Apply horizontal flip data augmentation.")
     parser.add_argument("--local_rank", type=int, default=-1, help="For distributed training: local_rank")
     parser.add_argument(
         "--concepts_list",
         type=str,
-        default=None,
+        default=cfg['concepts_list'],
         help="Path to json containing multiple concepts, will overwrite parameters like instance_prompt, class_prompt, etc.",
     )
     
