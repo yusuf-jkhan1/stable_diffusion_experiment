@@ -1,7 +1,7 @@
 echo '=== Beginning Setup ==='
 pip install -qq git+https://github.com/ShivamShrirao/diffusers
 pip install -q -U --pre triton
-pip install -q accelerate==0.15.0 transformers==4.25.1 ftfy bitsandbytes==0.35.0 gradio natsort ninja
+pip install -q accelerate==0.15.0 transformers==4.25.1 ftfy bitsandbytes==0.35.0 gradio natsort ninja pyton-dotenv
 pip install -v -U git+https://github.com/facebookresearch/xformers.git@47ab8b812fbc0518eb6b630440548c1ff7915500#egg=xformers
 
 
