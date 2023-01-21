@@ -1,0 +1,6 @@
+INSTANCE_DIR_ROOT: "./instance_dir/"
+INSTANCE_NAME: 'yusufjkhan1'
+CLASS_NAME: 'man'
+OUTPUT_DIR: "./weights/"
+
+    

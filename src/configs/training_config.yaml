@@ -1,0 +1,23 @@
+pretrained_model_name_or_path: "runwayml/stable-diffusion-v1-5"
+pretrained_vae_name_or_path: "stabilityai/sd-vae-ft-mse"
+output_dir: "./weights/"
+revision: "fp16"
+with_prior_preservation: true
+prior_loss_weight: 1.0
+seed: 123456
+resolution: 512
+train_batch_size: 1
+train_text_encoder: true
+mixed_precision: "fp16"
+use_8bit_adam: true
+gradient_accumulation_steps: 1
+learning_rate: 1.e-6
+lr_scheduler: "constant"
+lr_warmup_steps: 0
+num_class_images: 50
+hflip: True
+sample_batch_size: 6
+max_train_steps: 900
+save_interval: 300
+save_sample_prompt: "photo of {yusufjkhan1} {man}"
+concepts_list: "src/configs/concepts_list.json"

@@ -1,3 +1,20 @@
+#Misc
+/.huggingface/token
+misc.ipynb
+weights/
+local_selfies/
+precomp_xformers/
+hold.ipynb
+dev.ipynb
+1-train.ipynb
+2-checkpoint.ipynb
+3-inference.ipynb
+/instance_dir/man/
+/instance_dir/yusufjkhan1
+/sample_images/
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
