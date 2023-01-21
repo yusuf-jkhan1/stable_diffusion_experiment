@@ -1,6 +1,6 @@
 #Misc
 /.huggingface/token
-misc.ipynb
+misc/
 weights/
 local_selfies/
 precomp_xformers/

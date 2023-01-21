@@ -1,8 +1,0 @@
-[
-    {
-        "instance_prompt": "photo of yusufjkhan1 man",
-        "class_prompt": "photo of a man",
-        "instance_data_dir": "/notebooks/stable_diffusion_experiment/local_selfies/yusufjkhan1",
-        "class_data_dir": "/notebooks/stable_diffusion_experiment/local_selfies/man"
-    }
-]
